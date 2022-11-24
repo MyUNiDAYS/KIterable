@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 val MODULE_PACKAGE_NAME: String by project
 val MODULE_NAME: String by project
 val MODULE_VERSION_NUMBER: String by project
+val PUBLISH_NAME: String by project
 
 group = MODULE_PACKAGE_NAME
 version = MODULE_VERSION_NUMBER
@@ -40,6 +41,9 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
 }
 
 kotlin {
+    js(BOTH) {
+        browser { }
+    }
     android {
         publishAllLibraryVariants()
         publishLibraryVariantsGroupedByFlavor = true
@@ -64,12 +68,9 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation("com.iterable:iterableapi:3.4.9")
-                implementation("com.iterable:iterableapi-ui:3.4.9")
-            }
-        }
+        val jsMain by getting
+        val jsTest by getting
+        val androidMain by getting
         val androidTest by getting {
             dependencies {
                 implementation("junit:junit:4.13.2")
@@ -108,7 +109,6 @@ val javadocJar by tasks.creating(Jar::class) {
 
 publishing {
     val OPEN_SOURCE_REPO: String by project
-    val PUBLISH_NAME: String by project
     val PUBLISH_DESCRIPTION: String by project
     val PUBLISH_URL: String by project
     val POM_DEVELOPER_ID: String by project
