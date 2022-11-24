@@ -40,9 +40,6 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
 }
 
 kotlin {
-    js(BOTH) {
-        browser { }
-    }
     android {
         publishAllLibraryVariants()
         publishLibraryVariantsGroupedByFlavor = true
@@ -67,9 +64,12 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val jsMain by getting
-        val jsTest by getting
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation("com.iterable:iterableapi:3.4.9")
+                implementation("com.iterable:iterableapi-ui:3.4.9")
+            }
+        }
         val androidTest by getting {
             dependencies {
                 implementation("junit:junit:4.13.2")
