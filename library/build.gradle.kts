@@ -65,8 +65,6 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val jsMain by getting
-        val jsTest by getting
         val androidMain by getting {
             dependencies {
                 implementation("com.iterable:iterableapi:3.4.9")
