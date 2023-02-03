@@ -11,6 +11,7 @@ version = MODULE_VERSION_NUMBER
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    kotlin("native.cocoapods")
     id("org.jlleitschuh.gradle.ktlint")
     id("io.gitlab.arturbosch.detekt")
     signing
@@ -57,6 +58,14 @@ kotlin {
             baseName = MODULE_NAME
             xcf.add(this)
         }
+    }
+    cocoapods {
+        ios.deploymentTarget = "11.0"
+        framework {
+            isStatic = true
+        }
+        noPodspec()
+        pod("Iterable-iOS-SDK")
     }
     sourceSets {
         val commonMain by getting

@@ -1,5 +1,6 @@
 package com.myunidays.kiterable
 
+import cocoapods.*
 import com.myunidays.kiterable.models.Context
 import com.myunidays.kiterable.models.IterableConfig
 import com.myunidays.kiterable.models.IterableInAppMessage
