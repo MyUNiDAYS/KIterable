@@ -15,7 +15,7 @@ actual class IterableApi internal constructor(private val android: com.iterable.
             return internalInstance
         }
         fun initialize(context: Context, apiKey: String, config: IterableConfigBuilder): IterableApi =
-            initialize(context, apiKey, config.build())
+            initialize(apiKey, IterableInitializationOptions(iterableConfig = config.build(), context))
 
         actual fun getInstance(): IterableApi = internalInstance
 
