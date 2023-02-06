@@ -1,6 +1,7 @@
 package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableUrlCallback
 
 actual class IterableInAppManager internal constructor(private val android: com.iterable.iterableapi.IterableInAppManager) {
     actual val messages: List<IterableInAppMessage>
@@ -16,11 +17,11 @@ actual class IterableInAppManager internal constructor(private val android: com.
     actual fun showMessage(
         message: IterableInAppMessage,
         consume: Boolean,
-        clickCallback: IterableHelper.IterableUrlCallback,
+        clickCallback: IterableUrlCallback?,
     ) {
         android.showMessage(android.messages.first { it.messageId == message.messageId }, consume) { url ->
             url?.let {
-                clickCallback.execute(it.toString())
+                clickCallback?.invoke(it.toString())
             }
         }
     }
