@@ -1,8 +1,11 @@
 package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.Context
+import com.myunidays.kiterable.models.IterableActionHandler
 import com.myunidays.kiterable.models.IterableConfig
 import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableInitializationOptions
+import com.myunidays.kiterable.models.IterableUrlCallback
 import com.myunidays.kiterable.models.PayloadData
 import platform.Foundation.NSData
 import platform.UIKit.UIApplicationLaunchOptionsKey
@@ -13,13 +16,9 @@ val optionalShared: IterableApi? get() = IterableApi.getOptionalInstance()
 private var internalInstance: IterableApiInterface? = null
 actual class IterableApi internal constructor(private val ios: IterableApiInterface) {
     actual companion object {
-        actual fun initialize(context: Context, apiKey: String, config: IterableConfig): IterableApi {
-            throw Error("iOS needs to use the initialize method with IterableApiImpl being passed.")
-        }
-
-        fun initialize(ios: IterableApiInterface, apiKey: String, launchOptions: Map<UIApplicationLaunchOptionsKey, Any>, config: IterableConfig): IterableApi {
-            internalInstance = ios
-            internalInstance!!.initialize(apiKey, launchOptions, config)
+        actual fun initialize(apiKey: String, initializationOptions: IterableInitializationOptions): IterableApi {
+            internalInstance = initializationOptions.iosNativeInstance
+            internalInstance!!.initialize(apiKey, initializationOptions.launchOptions, initializationOptions.iterableConfig)
             return instance
         }
 
@@ -43,9 +42,9 @@ actual class IterableApi internal constructor(private val ios: IterableApiInterf
     actual fun showMessage(
         message: IterableInAppMessage,
         consume: Boolean,
-        onClick: IterableHelper.IterableUrlCallback,
+        onClick: IterableUrlCallback?,
     ) = inAppManager.showMessage(message, consume, onClick)
-    actual fun getAndTrackDeepLink(uri: String, onCallback: IterableHelper.IterableActionHandler?) = ios.getAndTrackDeepLink(uri, onCallback)
+    actual fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler) = ios.getAndTrackDeepLink(uri, onCallback)
     fun register(token: NSData) = ios.register(token)
     fun disableDeviceForCurrentUser() = ios.disableDeviceForCurrentUser()
 }
@@ -58,7 +57,7 @@ interface IterableApiInterface {
     fun getPayloadData(): PayloadData?
     fun getPayloadData(key: String): String?
     fun getMessages(): List<IterableInAppMessage>
-    fun getAndTrackDeepLink(uri: String, onCallback: IterableHelper.IterableActionHandler?)
+    fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler)
     fun register(token: NSData)
     fun disableDeviceForCurrentUser()
 }

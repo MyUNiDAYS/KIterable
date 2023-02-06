@@ -2,6 +2,7 @@ package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.IterableInAppMessage
 import com.myunidays.kiterable.models.IterableInAppMessageImpl
+import com.myunidays.kiterable.models.IterableUrlCallback
 
 actual class IterableInAppManager constructor(private val ios: IterableInAppManagerInterface) {
     actual val messages: List<IterableInAppMessage>
@@ -19,7 +20,7 @@ actual class IterableInAppManager constructor(private val ios: IterableInAppMana
     actual fun showMessage(
         message: IterableInAppMessage,
         consume: Boolean,
-        clickCallback: IterableHelper.IterableUrlCallback,
+        clickCallback: IterableUrlCallback?,
     ) = ios.showMessage(ios.messages.first { it.messageId == message.messageId }, consume, clickCallback)
 }
 
@@ -29,5 +30,5 @@ interface IterableInAppManagerInterface {
     val unreadInboxMessagesCount get() = inboxMessages.count() // needs to be unread ones
     var autoDisplayPaused: Boolean
 
-    fun showMessage(message: IterableInAppMessageImpl, consume: Boolean, clickCallback: IterableHelper.IterableUrlCallback)
+    fun showMessage(message: IterableInAppMessageImpl, consume: Boolean, clickCallback: IterableUrlCallback?)
 }

@@ -9,5 +9,5 @@ expect class IterableInAppManager {
     val unreadInboxMessagesCount: Int
 
     fun setAutoDisplayPaused(paused: Boolean)
-    fun showMessage(message: IterableInAppMessage, consume: Boolean, clickCallback: IterableHelper.IterableUrlCallback)
+    fun showMessage(message: IterableInAppMessage, consume: Boolean, clickCallback: ((String?) -> Unit)?)
 }
