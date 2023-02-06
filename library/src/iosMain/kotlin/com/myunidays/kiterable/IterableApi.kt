@@ -1,6 +1,5 @@
 package com.myunidays.kiterable
 
-import com.myunidays.kiterable.models.Context
 import com.myunidays.kiterable.models.IterableActionHandler
 import com.myunidays.kiterable.models.IterableConfig
 import com.myunidays.kiterable.models.IterableInAppMessage
