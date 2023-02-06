@@ -9,10 +9,10 @@ actual class IterableInAppMessage internal constructor(private val ios: Iterable
 
 data class IterableInAppMessageImpl(
     val messageId: String,
-//    val content: Content,
     val customPayload: Payload?,
     val createdAt: String?,
     val expiresAt: String?,
+//    val content: Content,
 //    val trigger: Trigger,
 //    val priorityLevel: Double,
 //    val inboxMetadata: InboxMetadata,

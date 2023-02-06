@@ -1,6 +1,7 @@
 package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableUrlCallback
 
 expect class IterableInAppManager {
 
@@ -9,5 +10,5 @@ expect class IterableInAppManager {
     val unreadInboxMessagesCount: Int
 
     fun setAutoDisplayPaused(paused: Boolean)
-    fun showMessage(message: IterableInAppMessage, consume: Boolean, clickCallback: IterableHelper.IterableUrlCallback)
+    fun showMessage(message: IterableInAppMessage, consume: Boolean, clickCallback: IterableUrlCallback?)
 }

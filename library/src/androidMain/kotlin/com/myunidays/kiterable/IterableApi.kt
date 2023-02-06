@@ -1,18 +1,20 @@
 package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.Context
-import com.myunidays.kiterable.models.IterableConfig
+import com.myunidays.kiterable.models.IterableActionHandler
 import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableInitializationOptions
+import com.myunidays.kiterable.models.IterableUrlCallback
 import com.myunidays.kiterable.models.PayloadData
 
 actual class IterableApi internal constructor(private val android: com.iterable.iterableapi.IterableApi) {
     actual companion object {
-        actual fun initialize(context: Context, apiKey: String, config: IterableConfig): IterableApi {
-            com.iterable.iterableapi.IterableApi.initialize(context.applicationContext, apiKey, config)
+        actual fun initialize(apiKey: String, initializationOptions: IterableInitializationOptions): IterableApi {
+            com.iterable.iterableapi.IterableApi.initialize(initializationOptions.context.applicationContext, apiKey, initializationOptions.iterableConfig)
             return internalInstance
         }
         fun initialize(context: Context, apiKey: String, config: IterableConfigBuilder): IterableApi =
-            initialize(context, apiKey, config.build())
+            initialize(apiKey, IterableInitializationOptions(iterableConfig = config.build(), context))
 
         actual fun getInstance(): IterableApi = internalInstance
 
@@ -35,9 +37,9 @@ actual class IterableApi internal constructor(private val android: com.iterable.
     actual fun showMessage(
         message: IterableInAppMessage,
         consume: Boolean,
-        onClick: IterableHelper.IterableUrlCallback,
+        onClick: IterableUrlCallback?,
     ) = inAppManager.showMessage(message, consume, onClick)
 
-    actual fun getAndTrackDeepLink(uri: String, onCallback: IterableHelper.IterableActionHandler?) =
-        android.getAndTrackDeepLink(uri) { onCallback?.execute(it) }
+    actual fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler) =
+        android.getAndTrackDeepLink(uri) { onCallback(it) }
 }
