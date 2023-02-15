@@ -45,7 +45,8 @@ actual class IterableApi internal constructor(private val ios: IterableApiInterf
     ) = inAppManager.showMessage(message, consume, onClick)
     actual fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler) = ios.getAndTrackDeepLink(uri, onCallback)
     fun register(token: NSData) = ios.register(token)
-    fun disableDeviceForCurrentUser() = ios.disableDeviceForCurrentUser()
+    actual fun disableDeviceForCurrentUser() = ios.disableDeviceForCurrentUser()
+    actual fun setAutoDisplayPaused(paused: Boolean) = ios.inAppManager.setAutoDisplayPaused(paused)
 }
 
 interface IterableApiInterface {
