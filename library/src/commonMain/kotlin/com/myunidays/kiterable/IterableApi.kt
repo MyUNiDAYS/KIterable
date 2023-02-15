@@ -24,4 +24,6 @@ expect class IterableApi {
     fun getMessage(predicate: (IterableInAppMessage) -> Boolean): IterableInAppMessage?
     fun showMessage(message: IterableInAppMessage, consume: Boolean, onClick: IterableUrlCallback?)
     fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler)
+    fun disableDeviceForCurrentUser()
+    fun setAutoDisplayPaused(paused: Boolean)
 }

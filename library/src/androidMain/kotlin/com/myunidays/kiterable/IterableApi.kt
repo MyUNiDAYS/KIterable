@@ -42,4 +42,7 @@ actual class IterableApi internal constructor(private val android: com.iterable.
 
     actual fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler) =
         android.getAndTrackDeepLink(uri) { onCallback(it) }
+
+    actual fun disableDeviceForCurrentUser() = android.disablePush()
+    actual fun setAutoDisplayPaused(paused: Boolean) = inAppManager.setAutoDisplayPaused(paused)
 }
