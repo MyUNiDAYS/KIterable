@@ -67,7 +67,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.iterable:iterableapi:3.4.9")
+                api("com.iterable:iterableapi:3.4.9")
                 implementation("com.iterable:iterableapi-ui:3.4.9")
             }
         }

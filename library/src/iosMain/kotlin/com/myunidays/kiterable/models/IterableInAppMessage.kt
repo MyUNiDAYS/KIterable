@@ -3,8 +3,8 @@ package com.myunidays.kiterable.models
 actual class IterableInAppMessage internal constructor(private val ios: IterableInAppMessageImpl) {
     actual val messageId: String = ios.messageId
     actual val customPayload: Payload? = ios.customPayload
-    val createdAt: String? = ios.createdAt
-    val expiresAt: String? = ios.expiresAt
+    actual val createdAt: String? = ios.createdAt
+    actual val expiresAt: String? = ios.expiresAt
 }
 
 data class IterableInAppMessageImpl(
