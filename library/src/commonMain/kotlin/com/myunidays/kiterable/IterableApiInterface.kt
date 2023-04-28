@@ -3,6 +3,7 @@ package com.myunidays.kiterable
 import com.myunidays.kiterable.models.IterableActionHandler
 import com.myunidays.kiterable.models.IterableInAppMessage
 import com.myunidays.kiterable.models.IterableInitializationOptions
+import com.myunidays.kiterable.models.IterablePushToken
 import com.myunidays.kiterable.models.IterableUrlCallback
 import com.myunidays.kiterable.models.PayloadData
 
@@ -19,6 +20,7 @@ expect interface IterableApiInterface {
 
     val payloadData: PayloadData?
     val inAppManager: IterableInAppManagerInterface
+    fun register(token: IterablePushToken)
     fun setUserId(userId: String?)
     fun setEmail(email: String?)
     fun getPayloadData(key: String): String?
