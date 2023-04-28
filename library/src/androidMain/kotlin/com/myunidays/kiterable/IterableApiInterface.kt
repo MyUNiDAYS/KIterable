@@ -1,5 +1,12 @@
 package com.myunidays.kiterable
 
+import com.myunidays.kiterable.models.Context
+import com.myunidays.kiterable.models.IterableActionHandler
+import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableInitializationOptions
+import com.myunidays.kiterable.models.IterableUrlCallback
+import com.myunidays.kiterable.models.PayloadData
+
 actual interface IterableApiInterface {
 
     actual companion object {

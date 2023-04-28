@@ -1,5 +1,11 @@
 package com.myunidays.kiterable
 
+import com.myunidays.kiterable.models.IterableActionHandler
+import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableInitializationOptions
+import com.myunidays.kiterable.models.IterableUrlCallback
+import com.myunidays.kiterable.models.PayloadData
+
 val shared: IterableApiInterface get() = IterableApiInterface.getInstance()
 val optionalShared: IterableApiInterface? get() = IterableApiInterface.getOptionalInstance()
 
