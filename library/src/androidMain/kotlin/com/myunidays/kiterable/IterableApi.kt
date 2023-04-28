@@ -1,48 +1,33 @@
 package com.myunidays.kiterable
 
-import com.myunidays.kiterable.models.Context
 import com.myunidays.kiterable.models.IterableActionHandler
 import com.myunidays.kiterable.models.IterableInAppMessage
-import com.myunidays.kiterable.models.IterableInitializationOptions
 import com.myunidays.kiterable.models.IterableUrlCallback
 import com.myunidays.kiterable.models.PayloadData
 
-actual class IterableApi internal constructor(private val android: com.iterable.iterableapi.IterableApi) {
-    actual companion object {
-        actual fun initialize(apiKey: String, initializationOptions: IterableInitializationOptions): IterableApi {
-            com.iterable.iterableapi.IterableApi.initialize(initializationOptions.context.applicationContext, apiKey, initializationOptions.iterableConfig)
-            return internalInstance
-        }
-        fun initialize(context: Context, apiKey: String, config: IterableConfigBuilder): IterableApi =
-            initialize(apiKey, IterableInitializationOptions(iterableConfig = config.build(), context))
-
-        actual fun getInstance(): IterableApi = internalInstance
-
-        private val internalInstance: IterableApi by lazy {
-            IterableApi(com.iterable.iterableapi.IterableApi.getInstance())
-        }
-    }
-    actual val payloadData: PayloadData?
+actual class IterableApi internal constructor(private val android: com.iterable.iterableapi.IterableApi) :
+    IterableApiInterface {
+    actual override val payloadData: PayloadData?
         get() = android.payloadData
-    actual val inAppManager: IterableInAppManager
+    actual override val inAppManager: IterableInAppManagerInterface
         get() = IterableInAppManager(android.inAppManager)
 
-    actual fun setUserId(userId: String?) = android.setUserId(userId)
+    actual override fun setUserId(userId: String?) = android.setUserId(userId)
 
-    actual fun setEmail(email: String?) = android.setEmail(email)
-    actual fun getPayloadData(key: String): String? = android.getPayloadData(key)
+    actual override fun setEmail(email: String?) = android.setEmail(email)
+    actual override fun getPayloadData(key: String): String? = android.getPayloadData(key)
 
-    actual fun getMessages(): List<IterableInAppMessage> = inAppManager.messages
-    actual fun getMessage(predicate: (IterableInAppMessage) -> Boolean): IterableInAppMessage? = getMessages().firstOrNull(predicate)
-    actual fun showMessage(
+    actual override fun getMessages(): List<IterableInAppMessage> = inAppManager.messages
+    actual override fun getMessage(predicate: (IterableInAppMessage) -> Boolean): IterableInAppMessage? = getMessages().firstOrNull(predicate)
+    actual override fun showMessage(
         message: IterableInAppMessage,
         consume: Boolean,
         onClick: IterableUrlCallback?,
     ) = inAppManager.showMessage(message, consume, onClick)
 
-    actual fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler) =
+    actual override fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler) =
         android.getAndTrackDeepLink(uri) { onCallback(it) }
 
-    actual fun disableDeviceForCurrentUser() = android.disablePush()
-    actual fun setAutoDisplayPaused(paused: Boolean) = inAppManager.setAutoDisplayPaused(paused)
+    actual override fun disableDeviceForCurrentUser() = android.disablePush()
+    actual override fun setAutoDisplayPaused(paused: Boolean) = inAppManager.setAutoDisplayPaused(paused)
 }
