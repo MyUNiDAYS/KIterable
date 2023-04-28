@@ -1,10 +1,10 @@
 package com.myunidays.kiterable.models
 
-import com.myunidays.kiterable.IterableApiInterface
+import com.myunidays.kiterable.IosIterableApiInterface
 import platform.UIKit.UIApplicationLaunchOptionsKey
 
 actual data class IterableInitializationOptions(
     actual val iterableConfig: IterableConfig,
     val launchOptions: Map<UIApplicationLaunchOptionsKey, Any>,
-    val iosNativeInstance: IterableApiInterface
+    val iosNativeInstance: IosIterableApiInterface
 )
