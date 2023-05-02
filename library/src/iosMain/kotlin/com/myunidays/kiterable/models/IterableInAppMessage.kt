@@ -1,7 +1,7 @@
 package com.myunidays.kiterable.models
 
-actual class IterableInAppMessage internal constructor(private val ios: IterableInAppMessageImpl)
-    : IterableInAppMessageInterface {
+actual class IterableInAppMessage internal constructor(private val ios: IterableInAppMessageImpl) :
+    IterableInAppMessageInterface {
     actual override val messageId: String = ios.messageId
     actual override val customPayload: Payload? = ios.customPayload
     actual override val createdAt: String? = ios.createdAt

@@ -1,6 +1,5 @@
 package com.myunidays.kiterable
 
-import com.myunidays.kiterable.models.IterableInAppMessage
 import com.myunidays.kiterable.models.IterableInAppMessageInterface
 import com.myunidays.kiterable.models.IterableUrlCallback
 
