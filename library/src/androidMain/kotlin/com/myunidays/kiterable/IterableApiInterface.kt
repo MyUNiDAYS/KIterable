@@ -2,7 +2,7 @@ package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.Context
 import com.myunidays.kiterable.models.IterableActionHandler
-import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableInAppMessageInterface
 import com.myunidays.kiterable.models.IterableInitializationOptions
 import com.myunidays.kiterable.models.IterablePushToken
 import com.myunidays.kiterable.models.IterableUrlCallback
@@ -31,9 +31,9 @@ actual interface IterableApiInterface {
     actual fun setUserId(userId: String?)
     actual fun setEmail(email: String?)
     actual fun getPayloadData(key: String): String?
-    actual fun getMessages(): List<IterableInAppMessage>
-    actual fun getMessage(predicate: (IterableInAppMessage) -> Boolean): IterableInAppMessage?
-    actual fun showMessage(message: IterableInAppMessage, consume: Boolean, onClick: IterableUrlCallback?)
+    actual fun getMessages(): List<IterableInAppMessageInterface>
+    actual fun getMessage(predicate: (IterableInAppMessageInterface) -> Boolean): IterableInAppMessageInterface?
+    actual fun showMessage(message: IterableInAppMessageInterface, consume: Boolean, onClick: IterableUrlCallback?)
     actual fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler)
     actual fun disableDeviceForCurrentUser()
     actual fun setAutoDisplayPaused(paused: Boolean)

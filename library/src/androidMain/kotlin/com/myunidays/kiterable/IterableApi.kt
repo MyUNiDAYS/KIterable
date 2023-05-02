@@ -1,7 +1,7 @@
 package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.IterableActionHandler
-import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableInAppMessageInterface
 import com.myunidays.kiterable.models.IterablePushToken
 import com.myunidays.kiterable.models.IterableUrlCallback
 import com.myunidays.kiterable.models.PayloadData
@@ -23,12 +23,12 @@ actual class IterableApi internal constructor(
 
     actual override fun getPayloadData(key: String): String? = android.getPayloadData(key)
 
-    actual override fun getMessages(): List<IterableInAppMessage> = inAppManager.messages
+    actual override fun getMessages(): List<IterableInAppMessageInterface> = inAppManager.messages
 
-    actual override fun getMessage(predicate: (IterableInAppMessage) -> Boolean): IterableInAppMessage? = getMessages().firstOrNull(predicate)
+    actual override fun getMessage(predicate: (IterableInAppMessageInterface) -> Boolean): IterableInAppMessageInterface? = getMessages().firstOrNull(predicate)
 
     actual override fun showMessage(
-        message: IterableInAppMessage,
+        message: IterableInAppMessageInterface,
         consume: Boolean,
         onClick: IterableUrlCallback?,
     ) = inAppManager.showMessage(message, consume, onClick)

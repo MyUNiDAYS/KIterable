@@ -1,7 +1,7 @@
 package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.IterableActionHandler
-import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableInAppMessageInterface
 import com.myunidays.kiterable.models.IterablePushToken
 import com.myunidays.kiterable.models.IterableUrlCallback
 import com.myunidays.kiterable.models.PayloadData
@@ -16,10 +16,10 @@ actual class IterableApi internal constructor(private val ios: IosIterableApiInt
     actual override fun setUserId(userId: String?) = ios.setUserId(userId)
     actual override fun setEmail(email: String?) = ios.setEmail(email)
     actual override fun getPayloadData(key: String): String? = ios.getPayloadData(key)
-    actual override fun getMessages(): List<IterableInAppMessage> = inAppManager.messages
-    actual override fun getMessage(predicate: (IterableInAppMessage) -> Boolean): IterableInAppMessage? = getMessages().firstOrNull(predicate)
+    actual override fun getMessages(): List<IterableInAppMessageInterface> = inAppManager.messages
+    actual override fun getMessage(predicate: (IterableInAppMessageInterface) -> Boolean): IterableInAppMessageInterface? = getMessages().firstOrNull(predicate)
     actual override fun showMessage(
-        message: IterableInAppMessage,
+        message: IterableInAppMessageInterface,
         consume: Boolean,
         onClick: IterableUrlCallback?,
     ) = inAppManager.showMessage(message, consume, onClick)
