@@ -2,6 +2,7 @@ package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.IterableActionHandler
 import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableInAppMessageInterface
 import com.myunidays.kiterable.models.IterableInitializationOptions
 import com.myunidays.kiterable.models.IterablePushToken
 import com.myunidays.kiterable.models.IterableUrlCallback
@@ -24,10 +25,10 @@ expect interface IterableApiInterface {
     fun setUserId(userId: String?)
     fun setEmail(email: String?)
     fun getPayloadData(key: String): String?
-    fun getMessages(): List<IterableInAppMessage>
-    fun getMessage(predicate: (IterableInAppMessage) -> Boolean): IterableInAppMessage?
+    fun getMessages(): List<IterableInAppMessageInterface>
+    fun getMessage(predicate: (IterableInAppMessageInterface) -> Boolean): IterableInAppMessageInterface?
     fun showMessage(
-        message: IterableInAppMessage,
+        message: IterableInAppMessageInterface,
         consume: Boolean,
         onClick: IterableUrlCallback?
     )

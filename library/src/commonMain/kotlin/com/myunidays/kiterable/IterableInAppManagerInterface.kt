@@ -1,12 +1,13 @@
 package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.IterableInAppMessage
+import com.myunidays.kiterable.models.IterableInAppMessageInterface
 import com.myunidays.kiterable.models.IterableUrlCallback
 
 expect interface IterableInAppManagerInterface {
-    val messages: List<IterableInAppMessage>
-    val inboxMessages: List<IterableInAppMessage>
+    val messages: List<IterableInAppMessageInterface>
+    val inboxMessages: List<IterableInAppMessageInterface>
     val unreadInboxMessagesCount: Int
     fun setAutoDisplayPaused(paused: Boolean)
-    fun showMessage(message: IterableInAppMessage, consume: Boolean, clickCallback: IterableUrlCallback?)
+    fun showMessage(message: IterableInAppMessageInterface, consume: Boolean, clickCallback: IterableUrlCallback?)
 }

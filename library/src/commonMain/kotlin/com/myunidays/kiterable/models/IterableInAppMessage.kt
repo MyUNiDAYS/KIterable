@@ -1,8 +1,8 @@
 package com.myunidays.kiterable.models
 
-expect class IterableInAppMessage {
-    val messageId: String
-    val customPayload: Payload?
-    val createdAt: String?
-    val expiresAt: String?
+expect class IterableInAppMessage : IterableInAppMessageInterface {
+    override val messageId: String
+    override val customPayload: Payload?
+    override val createdAt: String?
+    override val expiresAt: String?
 }
