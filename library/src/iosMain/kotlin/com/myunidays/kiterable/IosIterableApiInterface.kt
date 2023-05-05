@@ -14,7 +14,6 @@ interface IosIterableApiInterface {
     fun setEmail(email: String?)
     fun getPayloadData(): PayloadData?
     fun getPayloadData(key: String): String?
-    fun getMessages(): List<IterableInAppMessage>
     fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler)
     fun register(token: NSData)
     fun disableDeviceForCurrentUser()
