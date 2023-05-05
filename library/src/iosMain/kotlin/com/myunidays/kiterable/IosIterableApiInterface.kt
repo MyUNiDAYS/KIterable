@@ -2,7 +2,6 @@ package com.myunidays.kiterable
 
 import com.myunidays.kiterable.models.IterableActionHandler
 import com.myunidays.kiterable.models.IterableConfig
-import com.myunidays.kiterable.models.IterableInAppMessage
 import com.myunidays.kiterable.models.PayloadData
 import platform.Foundation.NSData
 import platform.UIKit.UIApplicationLaunchOptionsKey
