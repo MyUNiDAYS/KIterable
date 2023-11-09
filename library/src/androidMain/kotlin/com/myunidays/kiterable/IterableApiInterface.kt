@@ -11,8 +11,13 @@ import com.myunidays.kiterable.models.PayloadData
 actual interface IterableApiInterface {
 
     actual companion object {
-        actual fun initialize(apiKey: String, initializationOptions: IterableInitializationOptions): IterableApiInterface {
-            com.iterable.iterableapi.IterableApi.initialize(initializationOptions.context.applicationContext, apiKey, initializationOptions.iterableConfig)
+        actual fun initialize(apiKey: String, initializationOptions: IterableInitializationOptions):
+            IterableApiInterface {
+            com.iterable.iterableapi.IterableApi.initialize(
+                initializationOptions.context.applicationContext,
+                apiKey,
+                initializationOptions.iterableConfig
+            )
             return internalInstance
         }
         fun initialize(context: Context, apiKey: String, config: IterableConfigBuilder): IterableApiInterface =

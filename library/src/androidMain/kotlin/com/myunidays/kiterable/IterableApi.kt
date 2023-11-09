@@ -25,7 +25,8 @@ actual class IterableApi internal constructor(
 
     actual override fun getMessages(): List<IterableInAppMessageInterface> = inAppManager.messages
 
-    actual override fun getMessage(predicate: (IterableInAppMessageInterface) -> Boolean): IterableInAppMessageInterface? = getMessages().firstOrNull(predicate)
+    actual override fun getMessage(predicate: (IterableInAppMessageInterface) -> Boolean):
+        IterableInAppMessageInterface? = getMessages().firstOrNull(predicate)
 
     actual override fun showMessage(
         message: IterableInAppMessageInterface,

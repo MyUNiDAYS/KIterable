@@ -17,13 +17,15 @@ actual class IterableApi internal constructor(private val ios: IosIterableApiInt
     actual override fun setEmail(email: String?) = ios.setEmail(email)
     actual override fun getPayloadData(key: String): String? = ios.getPayloadData(key)
     actual override fun getMessages(): List<IterableInAppMessageInterface> = inAppManager.messages
-    actual override fun getMessage(predicate: (IterableInAppMessageInterface) -> Boolean): IterableInAppMessageInterface? = getMessages().firstOrNull(predicate)
+    actual override fun getMessage(predicate: (IterableInAppMessageInterface) -> Boolean):
+        IterableInAppMessageInterface? = getMessages().firstOrNull(predicate)
     actual override fun showMessage(
         message: IterableInAppMessageInterface,
         consume: Boolean,
         onClick: IterableUrlCallback?,
     ) = inAppManager.showMessage(message, consume, onClick)
-    actual override fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler) = ios.getAndTrackDeepLink(uri, onCallback)
+    actual override fun getAndTrackDeepLink(uri: String, onCallback: IterableActionHandler) =
+        ios.getAndTrackDeepLink(uri, onCallback)
     actual override fun disableDeviceForCurrentUser() = ios.disableDeviceForCurrentUser()
     actual override fun setAutoDisplayPaused(paused: Boolean) = ios.inAppManager.setAutoDisplayPaused(paused)
 }

@@ -151,3 +151,4 @@ fabric.properties
 !*/swiftpackage/.git
 
 swiftpackage
+/library/Kiterable.podspec

@@ -8,5 +8,9 @@ actual interface IterableInAppManagerInterface {
     actual val inboxMessages: List<IterableInAppMessageInterface>
     actual val unreadInboxMessagesCount: Int
     actual fun setAutoDisplayPaused(paused: Boolean)
-    actual fun showMessage(message: IterableInAppMessageInterface, consume: Boolean, clickCallback: IterableUrlCallback?)
+    actual fun showMessage(
+        message: IterableInAppMessageInterface,
+        consume: Boolean,
+        clickCallback: IterableUrlCallback?
+    )
 }

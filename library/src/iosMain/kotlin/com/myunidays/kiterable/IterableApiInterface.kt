@@ -14,9 +14,14 @@ private var internalInstance: IosIterableApiInterface? = null
 actual interface IterableApiInterface {
 
     actual companion object {
-        actual fun initialize(apiKey: String, initializationOptions: IterableInitializationOptions): IterableApiInterface {
+        actual fun initialize(apiKey: String, initializationOptions: IterableInitializationOptions):
+            IterableApiInterface {
             internalInstance = initializationOptions.iosNativeInstance
-            internalInstance!!.initialize(apiKey, initializationOptions.launchOptions, initializationOptions.iterableConfig)
+            internalInstance!!.initialize(
+                apiKey,
+                initializationOptions.launchOptions,
+                initializationOptions.iterableConfig
+            )
             return instance
         }
 
