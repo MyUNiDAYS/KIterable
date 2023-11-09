@@ -139,35 +139,36 @@ publishing {
         }
     }
 
-    publications.all {
-        this as MavenPublication
+    publications {
+        withType<MavenPublication> {
 
-        artifact(javadocJar)
+            artifact(javadocJar)
 
-        pom {
-            name.set(PUBLISH_NAME)
-            description.set(PUBLISH_DESCRIPTION)
-            url.set(PUBLISH_URL)
+            pom {
+                name.set(PUBLISH_NAME)
+                description.set(PUBLISH_DESCRIPTION)
+                url.set(PUBLISH_URL)
 
-            licenses {
-                license {
-                    name.set("MIT License")
-                    url.set("http://opensource.org/licenses/MIT")
+                licenses {
+                    license {
+                        name.set("MIT License")
+                        url.set("http://opensource.org/licenses/MIT")
+                    }
                 }
-            }
 
-            developers {
-                developer {
-                    id.set(POM_DEVELOPER_ID)
-                    name.set(POM_DEVELOPER_NAME)
-                    email.set(POM_DEVELOPER_EMAIL)
+                developers {
+                    developer {
+                        id.set(POM_DEVELOPER_ID)
+                        name.set(POM_DEVELOPER_NAME)
+                        email.set(POM_DEVELOPER_EMAIL)
+                    }
                 }
-            }
 
-            scm {
-                url.set(PUBLISH_SCM_URL)
-                connection.set(PUBLISH_SCM_CONNECTION)
-                developerConnection.set(PUBLISH_SCM_DEVELOPERCONNECTION)
+                scm {
+                    url.set(PUBLISH_SCM_URL)
+                    connection.set(PUBLISH_SCM_CONNECTION)
+                    developerConnection.set(PUBLISH_SCM_DEVELOPERCONNECTION)
+                }
             }
         }
     }
