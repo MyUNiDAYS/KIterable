@@ -113,8 +113,8 @@ fun SigningExtension.whenRequired(block: () -> Boolean) {
     setRequired(block)
 }
 
-val javadocJar by tasks.creating(Jar::class) {
-    archiveClassifier.value("javadoc")
+val javadocJar = tasks.register("javadocJar", Jar::class.java) {
+    archiveClassifier.set("javadoc")
 }
 
 publishing {
